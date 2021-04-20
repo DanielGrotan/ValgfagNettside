@@ -1,55 +1,10 @@
 <html>
 <head>
     <title>Valgfag Nettside</title>
-    <style type="text/css">
-        #meme_bottom_text {
-            background-color: transparent;
-            font-size: 40px;
-            font-family: "Impact";
-            color: white;
-            text-shadow: black 0px 0px 10px;
-            width: 600px;
-            position: absolute;
-            top: 500px;
-            text-align: center;
-    }
-
-        #meme_top_text {
-                background-color: transparent;
-                font-size: 40px;
-                font-family: "Impact";
-                color: white;
-                text-shadow: black 0px 0px 10px;
-                width: 600px;
-                position: absolute;
-                top: 150px;
-                text-align: center;
-        }
-    </style>
 </head>
 <body>
-    <form>
-        Top text: <input type="text" id="user_top_text" maxlength="70" oninput="update_text('top')"><p>
-        Bottom text: <input type="text" id="user_bottom_text" maxlength="70" oninput="update_text('bottom')"><p>
-        Select a picture <input type="file" id="user_picture" onchange="update_picture()"><p>
-    </form>
-
-    <div id="meme_top_text">Top Text</div>
-    <div id="meme_bottom_text">Bottom Text</div>
-    <div id="meme_picture"><img src="" height="500" width="600"></div>
-
-    <script>
-        function update_text(pos){
-            var user_text = document.getElementById("user_" + pos + "_text");
-            var meme_text = document.getElementById("meme_" + pos + "_text");
-            meme_text.innerHTML = user_text.value;
-        }
-
-        function update_picture(){
-            var img = document.querySelector("img");
-            var file = document.querySelector("input[type=file]").files[0];
-            img.src = window.URL.createObjectURL(file);
-        }
-    </script>
+    <a href="index.html">Hjem</a>
+    <a href="enkle_oppgaver.html">Enkle Oppgaver</a>
+    
 </body>
 </html>
