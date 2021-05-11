@@ -86,6 +86,8 @@
     <p>På denne siden kan du bruke dropdown listen til å velge hvilken av ekstra oppgavene fra onenote du vil at skal vises</p>
 
     <label for="oppgaver">Velg en av oppgavene:</label>
+    
+    <!-- Dropdown som kaller funksjonen change_display når verdien endres -->
     <select name="oppgaver" id="oppgaver" onchange="change_display()">
         <option value="ingen">Ingen</option>
         <option value="meme_generator">Meme Generator</option>
@@ -93,7 +95,8 @@
     </select>
 
     <p>Den valgte oppgaven vises her:</p>
-
+    
+    <!-- Div der man kan endre veriden til "display" for å bestemme om meme_generator skal vises. Den defaulter til "none" som vil si at den ikke vises -->
     <div id="meme_generator_div" style="display: none">
         <form>
             Top text: <input type="text" id="user_top_text" maxlength="70" oninput="update_text('top')"><p>
@@ -105,7 +108,8 @@
             <div id="meme_bottom_text">Bottom Text</div>
             <div id="meme_picture"><img src="" height="500" width="600"></div>
     </div>
-
+    
+    <!-- Div der man kan endre veriden til "display" for å bestemme om guess_the_color skal vises. Den defaulter til "none" som vil si at den ikke vises -->
     <div id="guess_the_color_div" style="display: none">
         <h1 id="title">Guess the color!</h1>
         <h2 id="colorValue"></h2>
@@ -171,20 +175,29 @@
     </div>
 
     <script>
+        // funksjonen change_display brukes for å endre "display" verdien på de to div-ene
         function change_display(){
-            var valgtOppgave = document.getElementById('oppgaver').value;
+            var valgtOppgave = document.getElementById('oppgaver').value; // henter verdien fra dropdown listen
             var meme_generator_div = document.getElementById('meme_generator_div');
             var guess_the_color_div = document.getElementById('guess_the_color_div');
+            
+            // hvis den valgte oppgaven er "meme_generator" blir "display" verdien til meme_generator div-en satt til "block" som vil si at den vises
+            // og guess_the_color div-en sin "display" verdi blir satt til "none" for å ikke vises
+            // om den valgte oppgaven er "guess_the_color" skjer det motsatte
+            // ellers settes begge til "none" fordi ingen av dem skal vises
             meme_generator_div.style.display = valgtOppgave === "meme_generator" ? "block" : "none";
             guess_the_color_div.style.display = valgtOppgave === "guess_the_color" ? "block" : "none";
         }
-
+        
+        // funksjon som hører til meme_generator for å oppdatere enten "top" eller "bottom" teksten
+        // parameteren "pos" bestemmer om "top" eller "bottom" skal endres
         function update_text(pos){
             var user_text = document.getElementById("user_" + pos + "_text");
             var meme_text = document.getElementById("meme_" + pos + "_text");
             meme_text.innerHTML = user_text.value;
         }
-
+        
+        // funksjon som hører til meme_generator for å oppdatere bildet
         function update_picture(){
             var img = document.querySelector("img");
             var file = document.querySelector("input[type=file]").files[0];
